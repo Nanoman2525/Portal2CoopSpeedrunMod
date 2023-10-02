@@ -1,0 +1,21 @@
+"GameInfo"
+{
+	"game"		"Portal 2: Coop Speedrun Mod"
+	"title"		"Portal 2: Coop Speedrun Mod"
+	
+	SupportsDX8     0
+	
+	"FileSystem"
+	{
+		"SteamAppId"	"620"
+		"ToolsAppId"	"211"
+		
+		"SearchPaths"
+		{
+			"Game"	"|gameinfo_path|."
+			"Game"	"|all_source_engine_paths|../Portal 2/portal2_dlc2"
+			"Game"	"|all_source_engine_paths|../Portal 2/portal2_dlc1"
+			"Game"	"|all_source_engine_paths|../Portal 2/portal2"
+		}
+	}
+}

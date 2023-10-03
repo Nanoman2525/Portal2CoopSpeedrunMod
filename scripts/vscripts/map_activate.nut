@@ -96,7 +96,18 @@ if ( iTargetMapIndex <= 7 ) // Course 1 (And calibration)
     // Map-specific fixes...
     if ( szMapName == "mp_coop_start" )
     {
-        // TODO
+        // Destroy the brushes keeping the player from falling
+        EntFire("pclip_tube_block_3", "Kill", "", 0.5)
+        EntFire("pclip_tube_block_2", "Kill", "", 0.5)
+        EntFire("pclip_tube_block_1", "Kill", "", 0.5)
+        Entites.FindByClassnameNearest("trigger_playerteam", Vector(-9952, -4384, 2965), 3).Destroy();
+        Entites.FindByClassnameNearest("trigger_playerteam", Vector(-9952, -4384, 2965), 3).Destroy();
+        
+        // Open first set of doors (TODO: fix this)
+        EntFire("blue_door-airlock_player_block", "Kill", "", 0.5);
+        EntFire("orange_door-airlock_player_block", "Kill", "", 0.5);
+        EntFire("blue_door-ramp_open_start", "Trigger");
+        EntFire("orange_door-ramp_open_start", "Trigger");
     }
     else if ( /*szMapName == "mp_coop_lobby_2" || */szMapName == "mp_coop_lobby_3" )
     {

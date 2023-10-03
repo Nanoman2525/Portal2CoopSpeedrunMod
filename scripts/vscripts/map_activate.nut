@@ -134,17 +134,6 @@ if ( iTargetMapIndex <= 7 ) // Course 1 (And calibration)
             EntFire( "track1-math_coop_door_open", "Add", "1" );
             EntFire( "track1-math_coop_door_open", "Kill" );
         }
-
-        for (local course = 1; course <= 4; course++)
-        {
-            for (local level = 1; level <= 9; level++)
-            { // 9 levels is the highest that a course has
-                if (IsLevelComplete(course - 1, level - 1))
-                {
-                    ChangeToThisMap = "mp_coop_lobby_3"
-                }
-            }
-        }
     }
     else if ( szMapName == "mp_coop_laser_2" )
     {

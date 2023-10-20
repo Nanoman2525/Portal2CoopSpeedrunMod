@@ -2,8 +2,13 @@
 {
 	"game"		"Portal 2: Coop Speedrun Mod"
 	"title"		"Portal 2: Coop Speedrun Mod"
-	
+	GameData	"portal2.fgd"
+	gamelogo 	1
+
 	SupportsDX8     0
+	SupportsXbox360 1
+
+	icon			"resource/icon"
 	
 	"FileSystem"
 	{

@@ -113,7 +113,15 @@ static const char* script =
     "\n"\
     "                    // Hacky workaround for the fact that delays do not work with RunScriptCode (We do this so that we can have a nice fade on level exit)\n"\
     "                    Entities.CreateByClassname( \"logic_relay\" ).__KeyValueFromString( \"targetname\", \"p2_coop_srm_transition_standard_rl\" );\n"\
-    "                    EntFire( \"p2_coop_srm_transition_standard_rl\", \"AddOutput\", \"OnTrigger \" + pszStringInstance + \"transition_script:RunScriptCode:TransitionFromMap();\" );\n"\
+    "                    if ( IsCalibration() )\n"\
+    "                    {\n"\
+    "                        EntFire( \"p2_coop_srm_transition_standard_rl\", \"AddOutput\", \"OnTrigger \" + pszStringInstance + \"@command:Command:changelevel mp_coop_lobby_3:2.0\" );\n"\
+    "                        EntFire( \"p2_coop_srm_transition_standard_rl\", \"AddOutput\", \"OnTrigger \" + pszStringInstance + \"@command:Command:changelevel mp_coop_lobby_2:2.1\" ); // Backup\n"\
+    "                    }\n"\
+    "                    else\n"\
+    "                    {\n"\
+    "                        EntFire( \"p2_coop_srm_transition_standard_rl\", \"AddOutput\", \"OnTrigger \" + pszStringInstance + \"transition_script:RunScriptCode:TransitionFromMap();\" );\n"\
+    "                    }\n"\
     "                    EntFire( pszManagerTargetName, \"AddOutput\", \"OnChangeToAllTrue p2_coop_srm_transition_standard_rl:Trigger::0.25\" );\n"\
     "\n"\
     "                    bAlreadyAddedManagerOutput = true; // For cleanliness, we don't want to add this output multiple times in standard levels\n"\
@@ -155,7 +163,11 @@ static const char* script =
     "\n"\
     "    // Hacky workaround for the fact that delays do not work with RunScriptCode (We do this so that we can have a nice fade on level exit)\n"\
     "    Entities.CreateByClassname( \"logic_relay\" ).__KeyValueFromString( \"targetname\", \"p2_coop_srm_transition_rl\" );\n"\
-    "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger transition_script:RunScriptCode:TransitionFromMap();\", 0, null, null );\n"\
+        "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger transition_script:RunScriptCode:SaveMPStatsData()\", 0, null, null );\n"\
+        "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger transition_script:RunScriptCode:MarkMapComplete( \\\"\" + pszMapName + \"\\\" )\", 0, null, null );\n"\
+        "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger transition_script:RunScriptCode:SetCameFromLastDLCMapFlag()\", 0, null, null );\n"\
+        "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger @command:Command:changelevel mp_coop_lobby_3:1.0\", 0, null, null );\n"\
+        "    EntFireByHandle( Entities.FindByName( null, \"p2_coop_srm_transition_rl\" ), \"AddOutput\", \"OnTrigger @command:Command:changelevel mp_coop_lobby_2:1.1\", 0, null, null ); // Backup\n"\
     "    EntFireByHandle( Entities.FindByClassnameNearest( \"trigger_once\", Vector( vecTriggerx, vecTriggery, vecTriggerz ), 3 ), \"AddOutput\", \"OnStartTouch p2_coop_srm_transition_rl:Trigger::1.60\", 0, null, null );\n"\
     "}\n"\
     "\n"\
